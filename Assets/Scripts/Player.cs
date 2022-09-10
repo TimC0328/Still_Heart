@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private enum States { DEFAULT, FREEZE, READY }
+    private enum States { DEFAULT, FREEZE, READY, INTERACT }
     private States state = States.DEFAULT;
 
     private CharacterController controller;
@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     private CameraSystem camSystem;
 
     private CombatSystem combatSystem;
-
 
     // Start is called before the first frame update
     private void Start()
@@ -31,9 +30,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (state == States.FREEZE)
+            return;
 
         HandleMovement();
         HandleCombat();
+        HandleInteraction();
     }
 
     private void HandleMovement()
@@ -88,6 +90,38 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void HandleInteraction()
+    {
+        if (state != States.DEFAULT)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Interactable interactable = getInteractable();
+            if (interactable)
+                interactable.Interact();
+        }
+    }
+
+    public Interactable getInteractable()
+    {
+        int layerMask = 1 << 9; //Interactables are on layer 9
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.forward * 0.5f + transform.position, .75f, layerMask);
+
+        if (hitColliders.Length == 0)
+            return null;
+        else if (hitColliders.Length == 1)
+        {
+            return hitColliders[0].gameObject.GetComponent<Interactable>();
+        }
+        else
+        {
+            // TODO: Add in get closest check
+            return null;
+        }
+    }
+
     public void Damage(int damage)
     {
         Debug.Log("Player has taken " + damage + " damage");
@@ -109,5 +143,12 @@ public class Player : MonoBehaviour
         }
         state = (States)newState;
     }
+
+    /*void OnDrawGizmos()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.forward * 0.5f + transform.position, .75f);
+    }*/
 
 }

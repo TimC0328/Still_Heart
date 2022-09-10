@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -9,7 +11,9 @@ public class GameManager : MonoBehaviour
 
     public Player player;
 
-    void Awake()
+    public RoomDataManager roomManager;
+
+    private void Awake()
     {
         if (_instance != null && _instance != this)
         {
@@ -18,7 +22,19 @@ public class GameManager : MonoBehaviour
         else
         {
             _instance = this;
+            DontDestroyOnLoad(gameObject);
         }
+    }
+
+    public void ChangeScene(string newScene)
+    {
+        SceneManager.LoadScene(newScene);
+    }
+
+    public void SetRoomManager(RoomDataManager roomDataManager)
+    {
+        roomManager = roomDataManager;
+        roomManager.LoadData();
     }
 
 }

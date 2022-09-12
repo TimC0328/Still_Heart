@@ -6,13 +6,22 @@ public class Door : Interactable
     private string nextRoom;
     [SerializeField]
     private bool isLocked = false;
+    [SerializeField]
+    private string targetKey = "";
+
+    protected override void Start()
+    {
+        base.Start();
+    }
 
     public override void Interact()
     {
         if (!isLocked)
             ChangeRoom();
-
-        base.Interact();
+        else if (Unlock())
+            return;
+        else
+            base.Interact();
     }
 
     private void ChangeRoom()
@@ -20,8 +29,22 @@ public class Door : Interactable
         GameManager.Instance.ChangeScene(nextRoom);
     }
 
-    public void Unlock()
+    public bool Unlock()
     {
-        isLocked = false;
+        KeyItem key = Inventory.Instance.SearchKeyItem(targetKey);
+        if (key != null)
+        {
+            isLocked = false;
+            interactUI.DisplayInteractText("Used the " + key.GetItemName() + " to unlock the " + interactName + ".");
+            return true;
+        }
+        else
+            return false;
+
+    }
+
+    public void SetLocked(bool state)
+    {
+        isLocked = state;
     }
 }

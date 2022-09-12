@@ -18,6 +18,7 @@ MonoBehaviour:
   - {fileID: 7283004875323353996}
   - {fileID: 1249791192731534550}
   - {fileID: 2608076775361540166}
+  - {fileID: 2944974489127127588}
 --- !u!114 &1249791192731534550
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -43,7 +44,7 @@ MonoBehaviour:
     m_Value: 0
   color:
     m_OverrideState: 1
-    m_Value: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 1}
+    m_Value: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
     hdr: 0
     showAlpha: 1
     showEyeDropper: 1
@@ -63,8 +64,8 @@ MonoBehaviour:
     m_Value: 0
     min: 0
   distanceMax:
-    m_OverrideState: 0
-    m_Value: 100
+    m_OverrideState: 1
+    m_Value: 75
     min: 0.00001
   fogFalloffCurve:
     m_OverrideState: 0
@@ -238,6 +239,73 @@ MonoBehaviour:
   tiledLayersSkyScrollRotationLayer1:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &2944974489127127588
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bffa9ddd307306479a0e3689eb72441, type: 3}
+  m_Name: PrecisionVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  geometryEnabled:
+    m_OverrideState: 1
+    m_Value: 1
+  geometry:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+    max: 1
+  geometryPushbackEnabled:
+    m_OverrideState: 0
+    m_Value: 0
+  geometryPushbackMinMax:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 1}
+    min: 0
+    max: 10
+  color:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+    max: 1
+  chroma:
+    m_OverrideState: 0
+    m_Value: 0.33333334
+    min: 0
+    max: 1
+  alpha:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+    max: 1
+  affineTextureWarping:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+    max: 1
+  framebufferDither:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+    max: 1
+  ditherSize:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 1
+    max: 8
+  drawDistanceFalloffMode:
+    m_OverrideState: 0
+    m_Value: 0
+  drawDistance:
+    m_OverrideState: 0
+    m_Value: 100
+    min: 0
 --- !u!114 &4662839340575396425
 MonoBehaviour:
   m_ObjectHideFlags: 3

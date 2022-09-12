@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactables:
     doors:
-    - name: Test Door
-      state: 1
+    - name: Test Door (1)
+      isLocked: 1

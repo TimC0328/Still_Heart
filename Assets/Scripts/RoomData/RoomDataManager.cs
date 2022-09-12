@@ -25,28 +25,17 @@ public class RoomDataManager : MonoBehaviour
         if (data.doors == null)
             return;
         Debug.Log("Loading doors");
-        foreach (DoorObject door in data.doors)
+        foreach (DoorObject doorData in data.doors)
         {
-            Door currentDoor = GameObject.Find(door.name).GetComponent<Door>();
-            Debug.Log("Loading door " + door.name);
-            if (currentDoor == null)
+            Door door = GameObject.Find(doorData.name).GetComponent<Door>();
+            Debug.Log("Loading door " + doorData.name);
+            if (door == null)
             {
-                Debug.Log("Error!" + door.name + " doesn't exist");
+                Debug.Log("Error!" + doorData.name + " doesn't exist");
                 continue;
             }
             Debug.Log("Found.");
-            switch(door.state)
-            {
-                case -1: //broken
-                    break;
-                case 0: //locked
-                    break;
-                case 1: //unlocked
-                    currentDoor.Unlock();
-                    break;
-                default:
-                    break;
-            }
+            door.SetLocked(doorData.isLocked);
         }
 
     }

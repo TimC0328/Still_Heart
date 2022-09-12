@@ -15,7 +15,7 @@ public class Interactable : MonoBehaviour
     protected bool displayMessage = false;
     protected int lineNum = 0;
 
-    private void Start()
+    protected virtual void Start()
     {
         interactUI = GameObject.Find("Canvas").GetComponent<DisplayText>();
     }

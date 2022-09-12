@@ -12,6 +12,8 @@ public class InteractableData
 [Serializable]
 public struct DoorObject
 {
-    public string name;     //Refers to the GAMEOBJECT NAME
-    public int state;     // Whether the door is broken, locked, or unlocked (-1,0,1) 
+    [Tooltip("Refers to the GAMEOBJECT NAME")]
+    public string name;
+    [Tooltip("Whether the door is locked or not")]
+    public bool isLocked;    
 }

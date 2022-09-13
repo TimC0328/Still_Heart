@@ -65,7 +65,7 @@ MonoBehaviour:
     min: 0
   distanceMax:
     m_OverrideState: 1
-    m_Value: 75
+    m_Value: 55
     min: 0.00001
   fogFalloffCurve:
     m_OverrideState: 0

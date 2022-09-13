@@ -10,6 +10,9 @@ public class Inventory : MonoBehaviour
     public List<Item> inventory;
     public List<KeyItem> keyItems;
 
+    [SerializeField]
+    private int maxItems = 6;
+
 
     private void Awake()
     {
@@ -34,5 +37,19 @@ public class Inventory : MonoBehaviour
                 return keyItem;
         }
         return null;
+    }
+
+    public bool AddItem(Item item)
+    {
+        if(item is KeyItem)
+        {
+            keyItems.Add((KeyItem)item);
+            return true;
+        }
+        if (inventory.Count == maxItems)
+            return false;
+
+        inventory.Add(item);
+        return true;
     }
 }

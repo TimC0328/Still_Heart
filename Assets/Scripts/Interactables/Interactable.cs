@@ -20,7 +20,7 @@ public class Interactable : MonoBehaviour
         interactUI = GameObject.Find("Canvas").GetComponent<DisplayText>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (displayMessage)
             InteractableMessage();
@@ -37,7 +37,7 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    protected void InteractableMessage()
+    protected virtual void InteractableMessage()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {

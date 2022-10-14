@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40a1002ab83bb7d45a6488d5013a64d0, type: 3}
-  m_Name: Room_Data
+  m_Script: {fileID: 11500000, guid: b8f14d1ef0e62b148ac39dbb1360d2ef, type: 3}
+  m_Name: New_Cutscene
   m_EditorClassIdentifier: 
-  interactables:
-    doors:
-    - name: Test Door (1)
-      isLocked: 1
+  events:
+  - cameraAngle: {fileID: 0}
+    dialogLines:
+    - I'm not sure how I ended up here...
+    - Something must be wrong.
+  actors: []

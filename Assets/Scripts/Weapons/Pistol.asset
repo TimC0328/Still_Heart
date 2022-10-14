@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05e77d8b5786fab4a91c3521cfe0bf01, type: 3}
-  m_Name: Test Key
+  m_Script: {fileID: 11500000, guid: dccc006c117607142a82de05d3e7ea30, type: 3}
+  m_Name: Pistol
   m_EditorClassIdentifier: 
-  itemName: Front door key
-  useText:
-  - Let's hope nobody is home.
-  - '*You unlock the door*'
-  - '*Front door key has been discarded*'
+  modelPrefab: {fileID: 3974830101023048434, guid: e274c54bb7a512b4493f6fdd3fad8a52, type: 3}
+  ammo: 0
+  maxAmmo: 12
+  ammoName: Pistol Ammo
+  reloadTime: 1
+  damage: 25

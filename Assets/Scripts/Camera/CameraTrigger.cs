@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraTrigger : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class CameraTrigger : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("Player entered");
-            cam = other.transform.gameObject.GetComponent<CameraSystem>().ChangeMainCamera(cam);
+
+            other.transform.gameObject.GetComponent<CameraSystem>().ChangeMainCamera(cam);
         }
 
     }

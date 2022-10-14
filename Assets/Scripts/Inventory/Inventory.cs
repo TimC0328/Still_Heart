@@ -8,10 +8,14 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance { get { return _instance; } }
 
     public List<Item> inventory;
-    public List<KeyItem> keyItems;
+
+    public List<Weapon> weapons;
 
     [SerializeField]
     private int maxItems = 6;
+
+    [SerializeField]
+    private GameObject inventoryUI;
 
 
     private void Awake()
@@ -28,28 +32,50 @@ public class Inventory : MonoBehaviour
 
     public KeyItem SearchKeyItem(string target)
     {
-        if (keyItems == null || keyItems.Count == 0)
+        if (inventory.Count == 0)
             return null;
 
-        foreach(KeyItem keyItem in keyItems)
+        foreach(Item item in inventory)
         {
-            if (keyItem.GetItemName() == target)
-                return keyItem;
+            if (!(item is KeyItem))
+                continue;
+            if (item.GetItemName() == target)
+                return (KeyItem)item;
+        }
+        return null;
+    }
+
+    public Item SearchItem(string target)
+    {
+        if (inventory.Count == 0)
+            return null;
+
+        foreach (Item item in inventory)
+        {
+
+            if (item.GetItemName() == target)
+                return item;
         }
         return null;
     }
 
     public bool AddItem(Item item)
     {
-        if(item is KeyItem)
-        {
-            keyItems.Add((KeyItem)item);
-            return true;
-        }
         if (inventory.Count == maxItems)
             return false;
 
         inventory.Add(item);
         return true;
+    }
+
+    public void RemoveItem(Item item)
+    {
+        inventory.Remove(item);
+    }
+
+    public bool ToggleUI()
+    {
+        inventoryUI.SetActive(!inventoryUI.activeSelf);
+        return inventoryUI.activeSelf;
     }
 }

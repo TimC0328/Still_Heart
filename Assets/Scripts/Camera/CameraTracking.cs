@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class CameraTracking : MonoBehaviour
 {
-    private Transform player;
+    [SerializeField]
+    private Transform target;
+
     private Camera cam;
 
     private void Start()
     {
-        player = GameManager.Instance.player.gameObject.transform;
-        cam = gameObject.GetComponent<Camera>();
+        cam = GetComponent<Camera>();
     }
 
     private void Update()
@@ -18,6 +19,11 @@ public class CameraTracking : MonoBehaviour
         if (!cam.enabled)
             return;
 
-        transform.LookAt(player, Vector3.up);
+        transform.LookAt(target, Vector3.up);
+    }
+
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
     }
 }

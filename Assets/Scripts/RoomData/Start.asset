@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05e77d8b5786fab4a91c3521cfe0bf01, type: 3}
-  m_Name: Test Key
+  m_Script: {fileID: 11500000, guid: 40a1002ab83bb7d45a6488d5013a64d0, type: 3}
+  m_Name: Start
   m_EditorClassIdentifier: 
-  itemName: Front door key
-  useText:
-  - Let's hope nobody is home.
-  - '*You unlock the door*'
-  - '*Front door key has been discarded*'
+  interactables:
+    doors:
+    - name: Test Door
+      isLocked: 1

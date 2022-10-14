@@ -6,7 +6,8 @@ public class Pickup : Interactable
 {
     [SerializeField]
     private Item item;
-    private bool pickedUp = false;
+    private bool pickedUp;
+
 
     protected override void Start()
     {
@@ -15,32 +16,17 @@ public class Pickup : Interactable
 
     public override void Interact()
     {
-        base.Interact();
-    }
-
-    protected override void InteractableMessage()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Inventory.Instance.AddItem(item))
         {
-            lineNum++;
-            if (lineNum < interactMessage.Length)
-                interactUI.DisplayInteractText(interactMessage[lineNum]);
-            else if (!pickedUp)
-            {
-                if (Inventory.Instance.AddItem(item))
-                {
-                    interactUI.DisplayInteractText("*" + item.GetItemName() + " was added to inventory.*");
-                    pickedUp = true;
-                }
-                else
-                {
-                    interactUI.DisplayInteractText("*You don't have enough inventory space*");
-                    lineNum = 1;
-                }
-            }
-            else
-                OnMessageEnd();
+            text.Add("*Picked up " + item.GetItemName() + "*");
+            pickedUp = true;
         }
+        else
+        {
+            text.Add("Not enough inventory space");
+            pickedUp = false;
+        }
+        base.Interact();
     }
 
     protected override void InteractionEnd(int newState)

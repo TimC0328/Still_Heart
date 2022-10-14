@@ -39,4 +39,19 @@ public class RoomDataManager : MonoBehaviour
         }
 
     }
+
+    public void ModifyDoorStatus(string doorName, bool status)
+    {
+        InteractableData data = roomData.interactables;
+        for (int i = 0; i < data.doors.Length; i++)
+        {
+            if(data.doors[i].name == doorName)
+            {
+                data.doors[i].isLocked = status;
+                return;
+            }
+        }
+
+        Debug.Log("Door not found!");
+    }
 }

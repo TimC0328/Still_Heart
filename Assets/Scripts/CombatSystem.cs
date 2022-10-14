@@ -10,8 +10,12 @@ public class CombatSystem : MonoBehaviour
     [SerializeField] private LineRenderer lineRender;
 
     [SerializeField] private float sensitivity = 100f;
+    [SerializeField] private float fpsSensitivity = 50f;
+
 
     [SerializeField] private Light muzzleFlash;
+
+    [SerializeField] private Weapon currentWeapon;
 
 
     private Ray ray;
@@ -22,6 +26,7 @@ public class CombatSystem : MonoBehaviour
     {
         lineRender.enabled = false;
         muzzleFlash.enabled = false;
+        currentWeapon.Equip();
     }
 
     // Update is called once per frame
@@ -38,20 +43,15 @@ public class CombatSystem : MonoBehaviour
         DrawLaser();
 
         if (Input.GetMouseButtonDown(0))
-            FireGun();
-
-    }
-
-    void FireGun()
-    {
-        int layerMask = 1 << 8;
-
-        StartCoroutine(DisplayMuzzleFlash());
-
-        if (Physics.Raycast(ray, out hit, 100f, layerMask))
         {
-            hit.transform.gameObject.GetComponent<EnemyHitbox>().HitArea(25);
+            if (currentWeapon.Fire())
+                StartCoroutine(DisplayMuzzleFlash());
         }
+        else if(Input.GetKeyDown(KeyCode.R) && !currentWeapon.reloading)
+        {
+            StartCoroutine(currentWeapon.Reload());
+        }
+
     }
 
     IEnumerator DisplayMuzzleFlash()
@@ -98,12 +98,16 @@ public class CombatSystem : MonoBehaviour
         float mx = Input.GetAxis("Mouse X");
         float my = Input.GetAxis("Mouse Y");
 
-        float xMin = -15 + transform.eulerAngles.x;
-        float xMax = 15 + transform.eulerAngles.x;
+        //float xMin = -15 + transform.eulerAngles.x;
+        // float xMax = 15 + transform.eulerAngles.x;
+        float xMin = -1 + transform.eulerAngles.x;
+        float xMax = 1 + transform.eulerAngles.x;
 
 
         float yMin = -1f + transform.eulerAngles.y;
-        float yMax = 30f + transform.eulerAngles.y;
+        //float yMax = 30f + transform.eulerAngles.y;
+        float yMax = 1f + transform.eulerAngles.y;
+
 
         Vector3 rot = gunPos.rotation.eulerAngles + new Vector3(-my * Time.deltaTime * sensitivity, mx * Time.deltaTime * sensitivity, 0f);
       
@@ -127,8 +131,9 @@ public class CombatSystem : MonoBehaviour
 
     }
 
-    public void ToggleLaser()
+    public void ToggleWeapon()
     {
+        currentWeapon.Toggle();
         lineRender.enabled = !lineRender.enabled;
     }
 
@@ -139,6 +144,25 @@ public class CombatSystem : MonoBehaviour
         transform.rotation = Quaternion.Euler(temp);
 
         gunPos.localRotation = Quaternion.identity;
+    }
+
+    public void ChangeWeapon(Weapon weapon)
+    {
+        currentWeapon = weapon;
+    }
+
+    public Weapon GetCurrentWeapon()
+    {
+        return currentWeapon;
+    }
+
+    public void UpdateFPS()
+    {
+        float mx = Input.GetAxis("Horizontal");
+        float my = Input.GetAxis("Vertical");
+
+        Vector3 rot = transform.rotation.eulerAngles + new Vector3(my * Time.deltaTime * fpsSensitivity, mx * Time.deltaTime * fpsSensitivity, 0f);
+        transform.eulerAngles = rot;
     }
 
 

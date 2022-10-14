@@ -1,0 +1,25 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "New_Cutscene", menuName = "Cutscene")]
+public class Cutscene : ScriptableObject
+{
+    [SerializeField]
+    private CutsceneEvent[] events;
+
+    public GameObject[] actors;
+
+    public CutsceneEvent GetEvent(int index)
+    {
+        return events[index];
+    }
+}
+
+[Serializable]
+public struct CutsceneEvent
+{
+    public Transform cameraAngle;
+    public string[] dialogLines;
+}

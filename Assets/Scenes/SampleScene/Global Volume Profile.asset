@@ -1,5 +1,60 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5621521067156957975
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d335ddfaff71d4493ab520ae36643e, type: 3}
+  m_Name: TonemapperVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  isEnabled:
+    m_OverrideState: 1
+    m_Value: 1
+  contrast:
+    m_OverrideState: 0
+    m_Value: 0.5
+    min: 0
+    max: 1
+  shoulder:
+    m_OverrideState: 0
+    m_Value: 0.5
+    min: 0
+    max: 1
+  graypointIn:
+    m_OverrideState: 0
+    m_Value: 0.18
+    min: 0
+    max: 1
+  graypointOut:
+    m_OverrideState: 0
+    m_Value: 0.18
+    min: 0
+    max: 1
+  whitepoint:
+    m_OverrideState: 0
+    m_Value: 10
+  crossTalk:
+    m_OverrideState: 0
+    m_Value: 0.394
+    min: 0
+    max: 1
+  saturation:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 1
+  crossTalkSaturation:
+    m_OverrideState: 0
+    m_Value: 0.039
+    min: 0.001
+    max: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19,6 +74,8 @@ MonoBehaviour:
   - {fileID: 1249791192731534550}
   - {fileID: 2608076775361540166}
   - {fileID: 2944974489127127588}
+  - {fileID: -5621521067156957975}
+  - {fileID: 7178035944711064360}
 --- !u!114 &1249791192731534550
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -322,15 +379,15 @@ MonoBehaviour:
   m_AdvancedMode: 0
   isEnabled:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   bloom:
-    m_OverrideState: 1
-    m_Value: 0.086
+    m_OverrideState: 0
+    m_Value: 0.1
     min: 0
     max: 1
   grateMaskMode:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 2
   grateMaskTexture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
@@ -338,13 +395,13 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   scanlineSharpness:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 0.5
     min: 0
     max: 1
   imageSharpness:
     m_OverrideState: 0
-    m_Value: 0.5
+    m_Value: 1
     min: 0
     max: 1
   bloomSharpnessX:
@@ -358,13 +415,13 @@ MonoBehaviour:
     min: 0
     max: 1
   noiseIntensity:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
     min: 0
     max: 1
   noiseSaturation:
     m_OverrideState: 0
-    m_Value: 1
+    m_Value: 0
     min: 0
     max: 1
   grateMaskIntensityMin:
@@ -392,6 +449,49 @@ MonoBehaviour:
     m_Value: 0.5
     min: 0
     max: 1
+--- !u!114 &7178035944711064360
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb00c03fccc953a4387732e1392ffcf8, type: 3}
+  m_Name: CameraVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  isFrameLimitEnabled:
+    m_OverrideState: 0
+    m_Value: 1
+  frameLimit:
+    m_OverrideState: 0
+    m_Value: 24
+    min: 1
+  aspectMode:
+    m_OverrideState: 0
+    m_Value: 0
+  targetRasterizationResolutionWidth:
+    m_OverrideState: 0
+    m_Value: 256
+    min: 1
+    max: 4096
+  targetRasterizationResolutionHeight:
+    m_OverrideState: 1
+    m_Value: 256
+    min: 1
+    max: 4096
+  isDepthBufferEnabled:
+    m_OverrideState: 0
+    m_Value: 1
+  isClearDepthAfterBackgroundEnabled:
+    m_OverrideState: 0
+    m_Value: 1
+  isClearDepthBeforeUIEnabled:
+    m_OverrideState: 0
+    m_Value: 1
 --- !u!114 &7283004875323353996
 MonoBehaviour:
   m_ObjectHideFlags: 3

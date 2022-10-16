@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: New_Cutscene
   m_EditorClassIdentifier: 
   events:
-  - cameraAngle: {fileID: 0}
-    dialogLines:
+  - dialogLines:
     - I'm not sure how I ended up here...
     - Something must be wrong.
+    KeepLastAngle: 0
+    cameraData:
+      cameraPos: {x: 0, y: 2, z: -50.59}
+      cameraAngle: {x: 0, y: 180, z: 0}
+  - dialogLines:
+    - I think something is watching me...
+    KeepLastAngle: 0
+    cameraData:
+      cameraPos: {x: 0, y: 1.47, z: -63.05}
+      cameraAngle: {x: 0, y: 0, z: 0}
   actors: []

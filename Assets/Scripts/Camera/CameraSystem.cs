@@ -15,6 +15,8 @@ public class CameraSystem : MonoBehaviour
     [SerializeField]
     private Camera inventoryCamera;
 
+    private Camera cutsceneCamera;
+
 
     [SerializeField]
     private Canvas canvas;
@@ -67,5 +69,16 @@ public class CameraSystem : MonoBehaviour
             canvas.worldCamera = inventoryCamera;
         else
             canvas.worldCamera = mainCamera;
+    }
+
+    public void CutsceneCameraEnable(Camera cam)
+    {
+        cutsceneCamera = mainCamera;
+        ChangeMainCamera(cam);
+    }
+    public void CutsceneCameraDisable()
+    {
+        ChangeMainCamera(cutsceneCamera);
+        cutsceneCamera = null;
     }
 }

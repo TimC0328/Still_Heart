@@ -14,6 +14,7 @@ public class CutsceneManager : MonoBehaviour
 
     private CutsceneEvent currentEvent;
     private int eventIndex = 0;
+    private int numEvents = 0;
 
     [SerializeField]
     private GameObject ui;
@@ -35,8 +36,9 @@ public class CutsceneManager : MonoBehaviour
         ui.SetActive(true);
 
         eventIndex = 0;
+        numEvents = cutscene.GetTotalEvents();
 
-        GameManager.Instance.player.GetComponent<CameraSystem>().ChangeMainCamera(movieCam);
+        GameManager.Instance.player.GetComponent<CameraSystem>().CutsceneCameraEnable(movieCam);
 
         PlayEvent();
     }
@@ -44,6 +46,35 @@ public class CutsceneManager : MonoBehaviour
     private void PlayEvent()
     {
         currentEvent = cutscene.GetEvent(eventIndex);
+
+        movieCam.transform.position = currentEvent.cameraData.cameraPos;
+        movieCam.transform.rotation = Quaternion.Euler(currentEvent.cameraData.cameraAngle);
+
+        lineNum = 0;
+
+        typing = true;
+        StartCoroutine(Typewriter(currentEvent.dialogLines[lineNum]));
+    }
+
+    private void NextEvent()
+    {
+        eventIndex++;
+
+        if (eventIndex >= numEvents)
+        {
+            EndCutscene();
+            return;
+        }
+
+        PlayEvent();
+        
+    }
+
+    private void EndCutscene()
+    {
+        ui.SetActive(false);
+        GameManager.Instance.player.GetComponent<CameraSystem>().CutsceneCameraDisable();
+        GameManager.Instance.player.SetState(0);
     }
 
     private void Update()
@@ -62,9 +93,7 @@ public class CutsceneManager : MonoBehaviour
                     StartCoroutine(Typewriter(currentEvent.dialogLines[lineNum]));
                 }
                 else
-                {
-                    Destroy(gameObject);
-                }
+                    NextEvent();
             }
             else
                 typing = false;

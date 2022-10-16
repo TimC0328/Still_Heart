@@ -15,11 +15,24 @@ public class Cutscene : ScriptableObject
     {
         return events[index];
     }
+
+    public int GetTotalEvents()
+    {
+        return events.Length;
+    }
 }
 
 [Serializable]
 public struct CutsceneEvent
 {
-    public Transform cameraAngle;
     public string[] dialogLines;
+    public bool KeepLastAngle;
+    public CameraData cameraData;
+}
+
+[Serializable]
+public struct CameraData
+{
+    public Vector3 cameraPos;
+    public Vector3 cameraAngle;
 }

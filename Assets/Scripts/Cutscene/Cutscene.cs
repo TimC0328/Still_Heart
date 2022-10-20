@@ -11,6 +11,8 @@ public class Cutscene : ScriptableObject
 
     public GameObject[] actors;
 
+    public bool cutsceneTriggered;
+
     public CutsceneEvent GetEvent(int index)
     {
         return events[index];

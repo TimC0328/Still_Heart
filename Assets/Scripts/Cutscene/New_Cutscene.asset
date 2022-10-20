@@ -21,7 +21,8 @@ MonoBehaviour:
       cameraPos: {x: 0, y: 2, z: -50.59}
       cameraAngle: {x: 0, y: 180, z: 0}
   - dialogLines:
-    - I think something is watching me...
+    - For whatever reason...
+    - I don't feel like I'm alone out here.
     KeepLastAngle: 0
     cameraData:
       cameraPos: {x: 0, y: 1.47, z: -63.05}

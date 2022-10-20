@@ -7,4 +7,5 @@ using UnityEngine;
 public class RoomData : ScriptableObject
 {
     public InteractableData interactables;
+    public bool[] CutscenesTriggered;
 }

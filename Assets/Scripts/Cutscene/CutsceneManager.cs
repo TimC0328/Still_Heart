@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class CutsceneManager : MonoBehaviour
 {
-    [SerializeField]
     private Cutscene cutscene;
 
     [SerializeField]
@@ -26,6 +25,11 @@ public class CutsceneManager : MonoBehaviour
     private void Start()
     {
         dialogText = ui.transform.GetChild(1).GetComponent<Text>();
+    }
+
+    public void LoadCutscene(Cutscene newCutscene)
+    {
+        cutscene = newCutscene;
         StartCutscene();
     }
 
@@ -73,8 +77,10 @@ public class CutsceneManager : MonoBehaviour
     private void EndCutscene()
     {
         ui.SetActive(false);
+        cutscene.cutsceneTriggered = true;
         GameManager.Instance.player.GetComponent<CameraSystem>().CutsceneCameraDisable();
         GameManager.Instance.player.SetState(0);
+
     }
 
     private void Update()
